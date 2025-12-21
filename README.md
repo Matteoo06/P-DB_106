@@ -25,3 +25,8 @@ MLD
 <img width="1111" height="698" alt="MLD_V2" src="https://github.com/user-attachments/assets/38d02521-f3cb-4084-bee0-5d4ef906683e" /> 
 
 Changement notable :
+ <ul>
+   <li>
+     Ajout des attributs date_paiement et montant, et renommage de mode en mode_paiement afin de mieux représenter un paiement réel.
+   </li>
+ </ul>
