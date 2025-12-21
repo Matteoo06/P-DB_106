@@ -1,4 +1,4 @@
-# P-DB_106  
+[LOAD DATA t_adresse.txt](https://github.com/user-attachments/files/24279711/LOAD.DATA.t_adresse.txt)# P-DB_106  
 ## Rapport de projet – Thanos Pizza  
 
 ### Création du MCD / MLD
@@ -44,6 +44,15 @@
 - Sur un navigateur tapez "http://localhost:8081" puis connecter vous en root root
 
 
+## Création de la base de données 
+```sql
+CREATE DATABASE IF NOT EXISTS db_pizzeria
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+
+```
+
+## Création des tables 
 ```sql
 CREATE TABLE t_client(
    client_id INT AUTO_INCREMENT,
@@ -145,6 +154,22 @@ CREATE TABLE t_effectuer(
 );
 
 ```
-sas
+
+## Ajout de donnée 
+
+- Mettre tout ses tsv dans le dossier scripts au préalable
+
+
+Ajout table t_adresse
+```sql
+LOAD DATA INFILE
+'/scripts/t_adresse.tsv'
+INTO TABLE t_adresse
+FIELDS TERMINATED BY '\t'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+```
+
+
 
 
