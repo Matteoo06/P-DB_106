@@ -123,10 +123,10 @@ CREATE TABLE t_livraison(
    date_depart DATE NOT NULL,
    date_arrivee DATE NOT NULL,
    distance_estimee VARCHAR(50) ,
-   commande_id_commande_affecter_fk INT NOT NULL,
+   commande_affecter_fk INT NOT NULL,
    PRIMARY KEY(livraison_id),
-   UNIQUE(commande_id_commande_affecter_fk),
-   FOREIGN KEY(commande_id_commande_affecter_fk) REFERENCES t_commande(commande_id)
+   UNIQUE(commande_affecter_fk),
+   FOREIGN KEY(commande_affecter_fk) REFERENCES t_commande(commande_id)
 );
 
 CREATE TABLE t_disposer(
