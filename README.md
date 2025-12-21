@@ -44,7 +44,7 @@
 - Sur un navigateur tapez "http://localhost:8080" puis connecter vous en root root
 
 
----sql
+```sql
 CREATE TABLE t_client(
    client_id INT AUTO_INCREMENT,
    nom VARCHAR(50)  NOT NULL,
@@ -145,6 +145,7 @@ CREATE TABLE t_effectuer(
    FOREIGN KEY(livraison_effectuer_fk) REFERENCES t_livraison(livraison_id)
 );
 
----
+```
+sas
 
 
