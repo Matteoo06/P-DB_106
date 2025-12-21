@@ -264,7 +264,7 @@ LINES TERMINATED BY '\n'
 IGNORE 1 LINES;
 ```
 
-Ajout table t_paiement
+Ajout table t_paiement (Ajout impossible, probleme à résoudre)
 ```sql
 LOAD DATA INFILE '/scripts/t_paiement.tsv'
 INTO TABLE t_paiement
@@ -282,7 +282,7 @@ SET
   date_paiement = STR_TO_DATE(@date_paiement, '%d.%m.%Y %H:%i');
 ```
 
-Ajout table t_ligne_commande
+Ajout table t_ligne_commande (Ajout impossible probleme à résoudre)
 ```sql
 LOAD DATA INFILE '/scripts/t_ligne_commande.tsv'
 INTO TABLE t_ligne_commande
