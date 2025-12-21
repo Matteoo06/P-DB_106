@@ -1,4 +1,4 @@
-[LOAD DATA t_produit.txt](https://github.com/user-attachments/files/24279736/LOAD.DATA.t_produit.txt)[LOAD DATA t_livraison.txt](https://github.com/user-attachments/files/24279728/LOAD.DATA.t_livraison.txt)[LOAD DATA t_commande.txt](https://github.com/user-attachments/files/24279725/LOAD.DATA.t_commande.txt)[LOAD DATA t_livreur.txt](https://github.com/user-attachments/files/24279723/LOAD.DATA.t_livreur.txt)[LOAD DATA t_client.txt](https://github.com/user-attachments/files/24279716/LOAD.DATA.t_client.txt)[LOAD DATA t_adresse.txt](https://github.com/user-attachments/files/24279711/LOAD.DATA.t_adresse.txt)# P-DB_106  
+[LOAD DATA t_ligne_commande.txt](https://github.com/user-attachments/files/24279830/LOAD.DATA.t_ligne_commande.txt)[LOAD DATA t_paiement.txt](https://github.com/user-attachments/files/24279823/LOAD.DATA.t_paiement.txt)[LOAD DATA t_produit.txt](https://github.com/user-attachments/files/24279736/LOAD.DATA.t_produit.txt)[LOAD DATA t_livraison.txt](https://github.com/user-attachments/files/24279728/LOAD.DATA.t_livraison.txt)[LOAD DATA t_commande.txt](https://github.com/user-attachments/files/24279725/LOAD.DATA.t_commande.txt)[LOAD DATA t_livreur.txt](https://github.com/user-attachments/files/24279723/LOAD.DATA.t_livreur.txt)[LOAD DATA t_client.txt](https://github.com/user-attachments/files/24279716/LOAD.DATA.t_client.txt)[LOAD DATA t_adresse.txt](https://github.com/user-attachments/files/24279711/LOAD.DATA.t_adresse.txt)# P-DB_106  
 ## Rapport de projet – Thanos Pizza  
 
 ### Création du MCD / MLD
@@ -244,7 +244,7 @@ SET
   distance_estimee = NULLIF(@distance_estimee, '');
 ```
 
-Ajout table effectuer
+Ajout table t_effectuer
 ```sql
 LOAD DATA INFILE
 '/scripts/t_produit.tsv'
@@ -254,7 +254,7 @@ LINES TERMINATED BY '\n'
 IGNORE 1 LINES;
 ```
 
-Ajout table produit 
+Ajout table t_produit 
 ```sql
 LOAD DATA INFILE
 '/scripts/t_produit.tsv'
@@ -263,6 +263,44 @@ FIELDS TERMINATED BY '\t'
 LINES TERMINATED BY '\n'
 IGNORE 1 LINES;
 ```
+
+Ajout table t_paiement
+```sql
+LOAD DATA INFILE '/scripts/t_paiement.tsv'
+INTO TABLE t_paiement
+FIELDS TERMINATED BY '\t'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES
+(
+  paiement_id,
+  mode_paiement,
+  @date_paiement,
+  montant,
+  commande_associer_a_fk
+)
+SET
+  date_paiement = STR_TO_DATE(@date_paiement, '%d.%m.%Y %H:%i');
+```
+
+Ajout table t_ligne_commande
+```sql
+LOAD DATA INFILE '/scripts/t_ligne_commande.tsv'
+INTO TABLE t_ligne_commande
+FIELDS TERMINATED BY '\t'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES
+(
+  ligne_commande_id,
+  quantite,
+  prix_unitaire,
+  @commande_passer,
+  produit_fk,
+  commande_contenir_fk
+)
+SET
+  commande_composer_ligne_fk = NULLIF(@commande_passer, '');
+```
+
 
 
 
