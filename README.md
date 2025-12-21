@@ -54,7 +54,7 @@ COLLATE utf8mb4_unicode_ci;
 
 ## Création des tables 
 ```sql
-USE db_pizeria;
+USE db_pizzeria;
 ```
 ```sql
 CREATE TABLE t_client(
