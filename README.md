@@ -54,6 +54,9 @@ COLLATE utf8mb4_unicode_ci;
 
 ## Création des tables 
 ```sql
+USE db_pizeria;
+```
+```sql
 CREATE TABLE t_client(
    client_id INT AUTO_INCREMENT,
    nom VARCHAR(50)  NOT NULL,
