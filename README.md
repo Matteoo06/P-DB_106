@@ -29,4 +29,18 @@ Changement notable :
    <li>
      Ajout des attributs date_paiement et montant, et renommage de mode en mode_paiement afin de mieux représenter un paiement réel.
    </li>
+   <li>
+     Suppression de l’attribut montant, celui-ci étant désormais dans la table paiement, et renommage des fk de verbe_nomtable_fk en nom_table_fk .
+   </li>
+   <li>
+     Les relations ont été précisées afin de garantir qu’une commande contient une ou plusieurs lignes de commande et qu’un produit est toujours associé via une ligne de commande.
+   </li>
+   <li>
+     Déplacement de l'association récursive "composer" de produit à ligne commande
+   </li>
+   <li>
+     L’attribut actif a été ajouté à l’entité Livreur pour indiquer la disponibilité des livreurs.
+   </li>
+   
+  
  </ul>
