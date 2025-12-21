@@ -32,3 +32,14 @@
 - **Relations clarifiées** : une commande contient une ou plusieurs lignes de commande, et un produit est toujours associé via une ligne de commande.
 - **Refonte de l’association `composer`** : déplacement de l’association récursive de `produit` vers `ligne_commande`.
 - **Livreur amélioré** : ajout de l’attribut `actif` pour indiquer la disponibilité des livreurs.
+
+---
+
+## Mise en place d'un environement docker pour mysql
+
+- Telechrger le zip et dezipper
+- Ouvrir le docker compose et ajouter "command: --secure-file-priv=/scripts" apres la balise "volumes:"
+- ouvrir le cmd dans de le dossier Docker_MySQL
+- Faire docker-compose up -d
+
+
