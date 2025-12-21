@@ -52,7 +52,6 @@ CREATE TABLE t_client(
    couriel VARCHAR(100)  NOT NULL,
    telephone VARCHAR(50)  NOT NULL,
    PRIMARY KEY(client_id),
-   UNIQUE(couriel),
    UNIQUE(telephone)
 );
 
@@ -120,8 +119,8 @@ CREATE TABLE t_ligne_commande(
 
 CREATE TABLE t_livraison(
    livraison_id INT AUTO_INCREMENT,
-   date_depart DATE NOT NULL,
-   date_arrivee DATE NOT NULL,
+   date_depart DATETIME NOT NULL,
+   date_arrivee DATETIME NOT NULL,
    distance_estimee VARCHAR(50) ,
    commande_affecter_fk INT NOT NULL,
    PRIMARY KEY(livraison_id),
