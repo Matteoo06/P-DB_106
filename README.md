@@ -1,4 +1,4 @@
-[LOAD DATA t_adresse.txt](https://github.com/user-attachments/files/24279711/LOAD.DATA.t_adresse.txt)# P-DB_106  
+[LOAD DATA t_produit.txt](https://github.com/user-attachments/files/24279736/LOAD.DATA.t_produit.txt)[LOAD DATA t_livraison.txt](https://github.com/user-attachments/files/24279728/LOAD.DATA.t_livraison.txt)[LOAD DATA t_commande.txt](https://github.com/user-attachments/files/24279725/LOAD.DATA.t_commande.txt)[LOAD DATA t_livreur.txt](https://github.com/user-attachments/files/24279723/LOAD.DATA.t_livreur.txt)[LOAD DATA t_client.txt](https://github.com/user-attachments/files/24279716/LOAD.DATA.t_client.txt)[LOAD DATA t_adresse.txt](https://github.com/user-attachments/files/24279711/LOAD.DATA.t_adresse.txt)# P-DB_106  
 ## Rapport de projet – Thanos Pizza  
 
 ### Création du MCD / MLD
@@ -170,6 +170,96 @@ LINES TERMINATED BY '\n'
 IGNORE 1 LINES;
 ```
 
+Ajout table t_client
+```sql
+LOAD DATA INFILE
+'/scripts/t_client.tsv'
+INTO TABLE t_client
+FIELDS TERMINATED BY '\t'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+```
+
+Ajout table t_disposer
+```sql
+LOAD DATA INFILE '/scripts/t_disposer.tsv'
+INTO TABLE t_disposer
+FIELDS TERMINATED BY '\t'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES
+(addresse_disposer_fk, client_fk);
+```
+
+Ajout table t_livreur
+```sql
+LOAD DATA INFILE
+'/scripts/t_livreur.tsv'
+INTO TABLE t_livreur
+FIELDS TERMINATED BY '\t'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+```
+
+Ajout table t_commande
+```sql
+LOAD DATA INFILE
+'/scripts/t_commande.tsv'
+INTO TABLE t_commande
+FIELDS TERMINATED BY '\t'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES
+(
+  commande_id,
+  client_passer_fk,
+  type_commande,
+  @adresse,
+  @date_txt,
+  statut
+)
+SET
+  adresse_relier_fk = NULLIF(@adresse, ''),
+  date_heure = STR_TO_DATE(@date_txt, '%d.%m.%Y %H:%i');
+```
+
+Ajout table t_livraison
+```sql
+LOAD DATA INFILE '/scripts/t_livraison.tsv'
+INTO TABLE t_livraison
+FIELDS TERMINATED BY '\t'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES
+(
+  livraison_id,
+  @date_depart,
+  @date_arrivee,
+  @distance_estimee,
+  commande_affecter_fk
+)
+SET
+  date_depart = STR_TO_DATE(@date_depart, '%d.%m.%Y %H:%i'),
+  date_arrivee = STR_TO_DATE(@date_arrivee, '%d.%m.%Y %H:%i'),
+  distance_estimee = NULLIF(@distance_estimee, '');
+```
+
+Ajout table effectuer
+```sql
+LOAD DATA INFILE
+'/scripts/t_produit.tsv'
+INTO TABLE t_produit
+FIELDS TERMINATED BY '\t'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+```
+
+Ajout table produit 
+```sql
+LOAD DATA INFILE
+'/scripts/t_produit.tsv'
+INTO TABLE t_produit
+FIELDS TERMINATED BY '\t'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+```
 
 
 
