@@ -41,7 +41,7 @@
 - Ouvrir le docker compose et ajouter "command: --secure-file-priv=/scripts" apres la balise "volumes:"
 - ouvrir le cmd dans de le dossier Docker_MySQL
 - Faire docker-compose up -d
-- Sur un navigateur tapez "http://localhost:8080" puis connecter vous en root root
+- Sur un navigateur tapez "http://localhost:8081" puis connecter vous en root root
 
 
 ```sql
