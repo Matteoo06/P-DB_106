@@ -44,7 +44,7 @@
 - Sur un navigateur tapez "http://localhost:8080" puis connecter vous en root root
 
 
-[CREATE.txt](https://github.com/user-attachments/files/24279167/CREATE.txt)
+---sql
 CREATE TABLE t_client(
    client_id INT AUTO_INCREMENT,
    nom VARCHAR(50)  NOT NULL,
@@ -144,5 +144,7 @@ CREATE TABLE t_effectuer(
    FOREIGN KEY(livreur_effectuer_fk) REFERENCES t_livreur(livreur_id),
    FOREIGN KEY(livraison_effectuer_fk) REFERENCES t_livraison(livraison_id)
 );
+
+---
 
 
