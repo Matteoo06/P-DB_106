@@ -274,13 +274,13 @@ LINES TERMINATED BY '\n'
 IGNORE 1 LINES
 (
   paiement_id,
+  commande_associer_a_fk,
   mode_paiement,
-  @date_paiement,
   montant,
-  commande_associer_a_fk
-)
+  @date_paiement)
 SET
   date_paiement = STR_TO_DATE(@date_paiement, '%d.%m.%Y %H:%i');
+
 ```
 
 Ajout table t_ligne_commande (Ajout impossible probleme à résoudre)
