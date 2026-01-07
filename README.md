@@ -3,8 +3,6 @@
 
 ### Création du MCD / MLD
 
----
-
 ## Première version (avant obtention des données)
 
 ### MCD  
@@ -12,8 +10,6 @@
 
 ### MLD  
 <img width="1038" height="613" alt="MLD_V1" src="https://github.com/user-attachments/assets/320514e1-923d-4c7b-afde-42dfebf48d9a" />
-
----
 
 ## Version finale
 
@@ -23,7 +19,6 @@
 ### MLD  
 <img width="1111" height="698" alt="MLD_V2" src="https://github.com/user-attachments/assets/38d02521-f3cb-4084-bee0-5d4ef906683e" />
 
----
 
 ## Changements notables
 
@@ -44,6 +39,7 @@
 - Sur un navigateur tapez "http://localhost:8081" puis connecter vous en root root
 - (Si il y a un probleme d'insertion apres cela, redemarrer docker)
 
+---
 
 ## Création de la base de données 
 ```sql
@@ -158,6 +154,7 @@ CREATE TABLE t_effectuer(
 );
 
 ```
+---
 
 ## Ajout de donnée 
 
@@ -301,7 +298,7 @@ IGNORE 1 LINES
 SET
   commande_composer_ligne_fk = NULLIF(@commande_passer, '');
 ```
-
+---
 
 ## Mettre en place une stratégie de sauvegardes et de restauration
 
