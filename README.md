@@ -265,7 +265,7 @@ LINES TERMINATED BY '\n'
 IGNORE 1 LINES;
 ```
 
-Ajout table t_paiement (Ajout impossible, probleme à résoudre)
+Ajout table t_paiement
 ```sql
 LOAD DATA INFILE '/scripts/t_paiement.tsv'
 INTO TABLE t_paiement
@@ -283,7 +283,7 @@ SET
 
 ```
 
-Ajout table t_ligne_commande (Ajout impossible probleme à résoudre)
+Ajout table t_ligne_commande
 ```sql
 LOAD DATA INFILE '/scripts/t_ligne_commande.tsv'
 INTO TABLE t_ligne_commande
