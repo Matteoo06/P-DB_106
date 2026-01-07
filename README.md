@@ -37,8 +37,8 @@
 
 ## Mise en place d'un environement docker pour mysql
 
-- Telechrger le zip et dezipper
-- Ouvrir le docker compose et ajouter "command: --secure-file-priv=/scripts" apres la balise "volumes:"
+- Dans le docker-commpose j'ai ajouté cette ligne au préalable : command: --secure-file-priv=/scripts .
+- Telecharger Docker_MySQL.zip et dezipper
 - ouvrir le cmd dans de le dossier Docker_MySQL
 - Faire docker-compose up -d
 - Sur un navigateur tapez "http://localhost:8081" puis connecter vous en root root
