@@ -42,6 +42,7 @@
 - ouvrir le cmd dans de le dossier Docker_MySQL
 - Faire docker-compose up -d
 - Sur un navigateur tapez "http://localhost:8081" puis connecter vous en root root
+- (Si il y a un probleme d'insertion apres cela, redemarrer docker)
 
 
 ## Création de la base de données 
