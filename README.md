@@ -302,6 +302,66 @@ SET
 
 ## Mettre en place une stratégie de sauvegardes et de restauration
 
+Ajout de du champs "last_modified" qui enregistrera la date et heure du dernier changement / ajout 
+
+
+```sql
+ALTER TABLE t_client
+ADD COLUMN last_modified DATETIME
+DEFAULT CURRENT_TIMESTAMP
+ON UPDATE CURRENT_TIMESTAMP;
+
+ALTER TABLE t_adresse
+ADD COLUMN last_modified DATETIME
+DEFAULT CURRENT_TIMESTAMP
+ON UPDATE CURRENT_TIMESTAMP;
+
+ALTER TABLE t_produit
+ADD COLUMN last_modified DATETIME
+DEFAULT CURRENT_TIMESTAMP
+ON UPDATE CURRENT_TIMESTAMP;
+
+ALTER TABLE t_commande
+ADD COLUMN last_modified DATETIME
+DEFAULT CURRENT_TIMESTAMP
+ON UPDATE CURRENT_TIMESTAMP;
+
+ALTER TABLE t_paiement
+ADD COLUMN last_modified DATETIME
+DEFAULT CURRENT_TIMESTAMP
+ON UPDATE CURRENT_TIMESTAMP;
+
+ALTER TABLE t_livreur
+ADD COLUMN last_modified DATETIME
+DEFAULT CURRENT_TIMESTAMP
+ON UPDATE CURRENT_TIMESTAMP;
+
+ALTER TABLE t_ligne_commande
+ADD COLUMN last_modified DATETIME
+DEFAULT CURRENT_TIMESTAMP
+ON UPDATE CURRENT_TIMESTAMP;
+
+ALTER TABLE t_livraison
+ADD COLUMN last_modified DATETIME
+DEFAULT CURRENT_TIMESTAMP
+ON UPDATE CURRENT_TIMESTAMP;
+
+ALTER TABLE t_disposer
+ADD COLUMN last_modified DATETIME
+DEFAULT CURRENT_TIMESTAMP
+ON UPDATE CURRENT_TIMESTAMP;
+
+ALTER TABLE t_effectuer
+ADD COLUMN last_modified DATETIME
+DEFAULT CURRENT_TIMESTAMP
+ON UPDATE CURRENT_TIMESTAMP;
+```
+
+Savegarde complete (execution dans le cmd a ouvrir depuis docker)
+```
+mysqldump -u root -p db_pizzeria > /scripts/backups/full.sql
+```
+
 
 
 
