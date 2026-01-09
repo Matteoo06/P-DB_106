@@ -362,7 +362,7 @@ Savegarde complete (execution dans le cmd a ouvrir depuis docker)
 mysqldump -u root -p db_pizzeria > /scripts/backups/full/full_db_pizzeria_$(date +%F).sql
 ```
 
-Savegarde différentiel (execution dans le cmd a ouvrir depuis docker)
+Savegarde différentiel (execution dans le cmd a ouvrir depuis docker)\br
 La dans la commande correspond a la date de la derniere backup effectué
 Commande a faire pour chaque table 
 
