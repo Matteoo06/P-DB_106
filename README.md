@@ -362,13 +362,84 @@ Savegarde complete (execution dans le cmd a ouvrir depuis docker)
 mysqldump -u root -p db_pizzeria > /scripts/backups/full/full_db_pizzeria_$(date +%F).sql
 ```
 
-Savegarde différentiel (execution dans le cmd a ouvrir depuis docker)\br
-La dans la commande correspond a la date de la derniere backup effectué
-Commande a faire pour chaque table 
+Savegarde différentiel (execution dans le cmd a ouvrir depuis docker)
+
+La date dans la commande correspond a la date de la derniere backup effectué (elle est donc a changer chaque jour)
+commande a faire pour chaque table (modifier le nom de la table dans la commande pour chaque table)
 
 ```
 mysqldump -u root -p db_pizzeria t_client --where="last_modified >= '2026-01-07 00:00:00'" > /scripts/backups/différentiel/diff_t_client_diff_$(date +%F).sql
 ```
+Scénarios
+restauration 
+## Requêtes SQL
+
+Requête n°1 : 
+
+Afficher les dix pizzas les plus vendues (sans les toppings), triés par quantités totales décroissantes. 
+Vous devez afficher le nom et les quantités.
+
+
+
+Requête n°2 : 
+
+Afficher les toppings les plus ajoutés. Le résultat doit être ordonné par le nombre de toppings de manière décroissante.
+Vous devez afficher le nom et le nombre.
+
+
+Requête n°3 : 
+
+Afficher le chiffre d’affaires par jour (commandes livrées). 
+Vous ne devez afficher que la date et le chiffres d’affaires (arrondi à 2 chiffres après la virgule).
+
+
+Requête n°4 : 
+
+Afficher le chiffre d’affaires par NPA (adresse de livraison). 
+
+1ère colonne : npa
+2ème colonne : localité
+3ème colonne : chiffre d’affaires (arrondi à 2 chiffres après la virgule)
+
+
+Requête n°5 : 
+
+Affiche le nombre de commandes par heure. Il s’agit par cette requête de savoir quelles sont les heures « chaudes ».
+NB : les heures « chaudes » sont des heures pendant lesquelles le nombre de commandes sont les plus élevées.
+
+
+Requête n°6: 
+
+Afficher le nombre de commandes des clients les plus fidèles. Un client est fidèle si son nombre de commandes est ≥ 5 . Afficher le résultat par ordre décroissant du nombre de commandes, puis par ordre alphabétique du nom.
+
+
+Requête n°7: 
+
+Afficher le total dû par commande. Afficher l’id de la commande et le montant dû (arrondi à 2 chiffres après la virgule). Ordonnez le résultat par ordre croissant des ids de commandes.
+
+
+Requête n°8:
+
+Afficher le total payé par commande (commande ayant au moins un paiement). Afficher l’id de la commande et le total payé (arrondi à 2 chiffres après la virgule). Ordonnez le résultat par ordre croissant des ids de commandes.
+
+
+Requête n°9: 
+
+Quelle est la répartition des types de commandes.
+Ordonner le résultat par le nombre de commande de chaque type, du plus grand au plus petit.
+
+1ère colonne : type
+2ème colonne : nombre de commandes de ce type
+
+
+Requête n°10:
+
+Quel est le délai moyen de livraison par livreur (en minutes).
+Ordonner le résultat par délai moyen en minutes du plus petit au plus grand.
+Aide : l’id du livreur, son nom et le délai dans le SELECT.
+
+
+
 
 
 
