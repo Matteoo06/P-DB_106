@@ -245,8 +245,8 @@ SET
 Ajout table t_effectuer
 ```sql
 LOAD DATA INFILE
-'/scripts/t_produit.tsv'
-INTO TABLE t_produit
+'/scripts/t_effectuer.tsv'
+INTO TABLE t_effectuer
 FIELDS TERMINATED BY '\t'
 LINES TERMINATED BY '\n'
 IGNORE 1 LINES;
@@ -438,6 +438,27 @@ Quel est le délai moyen de livraison par livreur (en minutes).
 Ordonner le résultat par délai moyen en minutes du plus petit au plus grand.
 Aide : l’id du livreur, son nom et le délai dans le SELECT.
 
+
+## Index
+
+Soit les 2 requêtes suivantes :
+
+Requête n°1:
+
+SELECT c.commande_id, c.date_heure, c.statut, cl.nom AS client
+FROM t_commande AS c
+JOIN t_client AS cl ON c.client_passer_fk = cl.client_id
+WHERE c.statut = 'livrée' AND c.date_heure > '2025-02-01'
+ORDER BY c.date_heure DESC;
+
+Requête n°2 :
+
+SELECT a.npa AS zone_npa, COUNT(c.commande_id) AS nb
+FROM t_commande AS c
+JOIN t_adresse AS a ON c.adresse_livraison_fk = a.adresse_id
+WHERE c.type = 'livraison' AND HOUR(c.date_creation) BETWEEN 18 AND 21
+GROUP BY a.npa
+ORDER BY nb DESC;
 
 
 
