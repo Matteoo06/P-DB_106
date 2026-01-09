@@ -359,7 +359,7 @@ ON UPDATE CURRENT_TIMESTAMP;
 
 Savegarde complete (execution dans le cmd a ouvrir depuis docker)
 ```
-mysqldump -u root -p db_pizzeria > /scripts/backups/full.sql
+mysqldump -u root -p db_pizzeria > /scripts/backups/full_db_pizzeria_$(date +%F).sql  db_pizzeria_$(date +%F)
 ```
 
 
