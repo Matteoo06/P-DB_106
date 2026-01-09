@@ -378,7 +378,18 @@ Requête n°1 :
 
 Afficher les dix pizzas les plus vendues (sans les toppings), triés par quantités totales décroissantes. 
 Vous devez afficher le nom et les quantités.
+```sql
+SELECT 
+    p.nom AS "Nom de la pizza",
+    SUM(lc.quantite) AS "Quantité totale"
+FROM t_ligne_commande lc
+JOIN t_produit p ON lc.produit_fk = p.produit_id
+WHERE p.type = 'Pizza'
+GROUP BY p.nom
+ORDER BY SUM(lc.quantite) DESC
+LIMIT 10;
 
+```
 
 
 Requête n°2 : 
@@ -386,12 +397,30 @@ Requête n°2 :
 Afficher les toppings les plus ajoutés. Le résultat doit être ordonné par le nombre de toppings de manière décroissante.
 Vous devez afficher le nom et le nombre.
 
-
+```sql
+SELECT 
+    p.nom AS "Nom du topping",
+    SUM(lc.quantite) AS "Nombre ajouté"
+FROM t_ligne_commande lc
+JOIN t_produit p ON lc.produit_fk = p.produit_id
+WHERE p.type = 'Topping'
+GROUP BY p.nom
+ORDER BY SUM(lc.quantite) DESC;
+```
 Requête n°3 : 
 
 Afficher le chiffre d’affaires par jour (commandes livrées). 
 Vous ne devez afficher que la date et le chiffres d’affaires (arrondi à 2 chiffres après la virgule).
-
+```sql
+SELECT 
+    DATE(c.date_heure) AS "Date",
+    ROUND(SUM(lc.quantite * lc.prix_unitaire), 2) AS "Chiffre d'affaires"
+FROM t_commande c
+JOIN t_ligne_commande lc ON lc.commande_contenir_fk = c.commande_id
+JOIN t_livraison l ON l.commande_affecter_fk = c.commande_id
+GROUP BY DATE(c.date_heure)
+ORDER BY DATE(c.date_heure);
+```
 
 Requête n°4 : 
 
@@ -401,27 +430,76 @@ Afficher le chiffre d’affaires par NPA (adresse de livraison).
 2ème colonne : localité
 3ème colonne : chiffre d’affaires (arrondi à 2 chiffres après la virgule)
 
+```sql
+SELECT 
+    a.npa AS "NPA",
+    a.localite AS "Localité",
+    ROUND(SUM(lc.quantite * lc.prix_unitaire), 2) AS "Chiffre d'affaires"
+FROM t_commande c
+JOIN t_ligne_commande lc ON lc.commande_contenir_fk = c.commande_id
+JOIN t_livraison l ON l.commande_affecter_fk = c.commande_id
+JOIN t_adresse a ON c.adresse_relier_fk = a.adresse_id
+GROUP BY a.npa, a.localite
+ORDER BY "Chiffre d'affaires" DESC;
+```
 
 Requête n°5 : 
 
 Affiche le nombre de commandes par heure. Il s’agit par cette requête de savoir quelles sont les heures « chaudes ».
 NB : les heures « chaudes » sont des heures pendant lesquelles le nombre de commandes sont les plus élevées.
 
+```sql
+SELECT 
+    HOUR(date_heure) AS "Heure",
+    COUNT(*) AS "Nombre de commandes"
+FROM t_commande
+GROUP BY HOUR(date_heure)
+ORDER BY COUNT(*) DESC;
+```
 
 Requête n°6: 
 
 Afficher le nombre de commandes des clients les plus fidèles. Un client est fidèle si son nombre de commandes est ≥ 5 . Afficher le résultat par ordre décroissant du nombre de commandes, puis par ordre alphabétique du nom.
 
+```sql
+SELECT 
+    c.nom AS "Nom du client",
+    c.prenom AS "Prénom",
+    COUNT(*) AS "Nombre de commandes"
+FROM t_commande cmd
+JOIN t_client c ON cmd.client_passer_fk = c.client_id
+GROUP BY c.client_id, c.nom, c.prenom
+HAVING COUNT(*) >= 5
+ORDER BY COUNT(*) DESC, c.nom ASC;
+```
 
 Requête n°7: 
 
 Afficher le total dû par commande. Afficher l’id de la commande et le montant dû (arrondi à 2 chiffres après la virgule). Ordonnez le résultat par ordre croissant des ids de commandes.
 
+```sql
+SELECT 
+    cmd.commande_id AS "ID Commande",
+    ROUND(SUM(lc.quantite * lc.prix_unitaire), 2) AS "Montant dû"
+FROM t_commande cmd
+JOIN t_ligne_commande lc ON lc.commande_contenir_fk = cmd.commande_id
+GROUP BY cmd.commande_id
+ORDER BY cmd.commande_id ASC;
+```
 
 Requête n°8:
 
 Afficher le total payé par commande (commande ayant au moins un paiement). Afficher l’id de la commande et le total payé (arrondi à 2 chiffres après la virgule). Ordonnez le résultat par ordre croissant des ids de commandes.
 
+```sql
+SELECT 
+    cmd.commande_id AS "ID Commande",
+    ROUND(SUM(pai.montant), 2) AS "Total payé"
+FROM t_commande cmd
+JOIN t_paiement pai ON pai.commande_associer_a_fk = cmd.commande_id
+GROUP BY cmd.commande_id
+ORDER BY cmd.commande_id ASC;
+```
 
 Requête n°9: 
 
@@ -431,6 +509,14 @@ Ordonner le résultat par le nombre de commande de chaque type, du plus grand au
 1ère colonne : type
 2ème colonne : nombre de commandes de ce type
 
+```sql
+SELECT 
+    type_commande AS "Type de commande",
+    COUNT(*) AS "Nombre de commandes"
+FROM t_commande
+GROUP BY type_commande
+ORDER BY COUNT(*) DESC;
+```
 
 Requête n°10:
 
@@ -438,6 +524,17 @@ Quel est le délai moyen de livraison par livreur (en minutes).
 Ordonner le résultat par délai moyen en minutes du plus petit au plus grand.
 Aide : l’id du livreur, son nom et le délai dans le SELECT.
 
+```sql
+SELECT 
+    lvr.livreur_id AS "ID Livreur",
+    lvr.nom AS "Nom Livreur",
+    ROUND(AVG(TIMESTAMPDIFF(MINUTE, lv.date_depart, lv.date_arrivee)), 2) AS "Délai moyen (minutes)"
+FROM t_livraison lv
+JOIN t_effectuer ef ON ef.livraison_effectuer_fk = lv.livraison_id
+JOIN t_livreur lvr ON lvr.livreur_id = ef.livreur_effectuer_fk
+GROUP BY lvr.livreur_id, lvr.nom
+ORDER BY "Délai moyen (minutes)" ASC;
+```
 
 ## Index
 
