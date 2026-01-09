@@ -359,8 +359,17 @@ ON UPDATE CURRENT_TIMESTAMP;
 
 Savegarde complete (execution dans le cmd a ouvrir depuis docker)
 ```
-mysqldump -u root -p db_pizzeria > /scripts/backups/full_db_pizzeria_$(date +%F).sql  db_pizzeria_$(date +%F)
+mysqldump -u root -p db_pizzeria > /scripts/backups/full/full_db_pizzeria_$(date +%F).sql
 ```
+
+Savegarde différentiel (execution dans le cmd a ouvrir depuis docker)
+La dans la commande correspond a la date de la derniere backup effectué
+Commande a faire pour chaque table 
+
+```
+mysqldump -u root -p db_pizzeria t_client --where="last_modified >= '2026-01-07 00:00:00'" > /scripts/backups/différentiel/diff_t_client_diff_$(date +%F).sql
+```
+
 
 
 
