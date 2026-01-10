@@ -561,7 +561,7 @@ ORDER BY nb DESC;
 ---
 ## Utilisateurs et rôles
 
-## Creation des rôles 
+### Creation des rôles 
 
 ```sql
 CREATE ROLE 'Administrateur';
@@ -572,7 +572,7 @@ CREATE ROLE 'Agent_de_caisse';
 CREATE ROLE 'Analyste';
 ```
 
-## Attribution des droits aux rôles
+### Attribution des droits aux rôles
 
 Administrateur
 ```sql
@@ -611,7 +611,7 @@ Analyste
 GRANT SELECT ON db_pizzeria.* TO 'Analyste';
 ```
 
-## Création utilisateurs 
+### Création utilisateurs 
 
 ```
 CREATE USER 'bob'@'localhost' IDENTIFIED BY 'bob2026';
@@ -622,7 +622,7 @@ CREATE USER 'luis'@'localhost' IDENTIFIED BY 'luis2026';
 CREATE USER 'david'@'localhost' IDENTIFIED BY 'david2026';
 ```
 
-## Attribution des rôles
+### Attribution des rôles
 
 GRANT 'Administrateur' TO 'matteo'@'localhost';
 GRANT 'Manager' TO 'bob'@'localhost';
