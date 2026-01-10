@@ -758,6 +758,13 @@ Résultat :
 
 ## Conclusion
 
+Grâce a ce projet j'ai pu mettre en pratique tu ce que j'ai appris pendant la théorie du module 106, jai aimé devoir mettre en place une infratructure complete d'un projet concret et realiste 
+
+
+Grâce à ce projet, j’ai pu mettre en pratique l’ensemble des notions vues durant la partie théorique du module 106. 
+La mise en place d’une infrastructure complète autour d’un projet concret et réaliste m’a permis de mieux comprendre le fonctionnement global d’une base de données, 
+ainsi que les problématiques liées à la sécurité, aux performances et à la fiabilité des données.
+
 
 
 
