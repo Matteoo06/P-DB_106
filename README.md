@@ -622,13 +622,14 @@ CREATE USER 'david'@'localhost' IDENTIFIED BY 'david2026';
 
 ### Attribution des rôles
 
+```
 GRANT 'Administrateur' TO 'matteo'@'localhost';
 GRANT 'Manager' TO 'bob'@'localhost';
 GRANT 'Pizzaiolo' TO 'alice'@'localhost';
 GRANT 'Livreur' TO 'julien'@'localhost';
 GRANT 'Agent_de_caisse' TO 'luis'@'localhost';
 GRANT 'Analyste' TO 'david'@'localhost';
-
+```
 ---
 ## Transaction
 
