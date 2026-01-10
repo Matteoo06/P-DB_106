@@ -1,6 +1,9 @@
 # P-DB_106  
 ## Rapport de projet – Thanos Pizza  
 
+<img width="1024" height="1536" alt="ChatGPT Image 10 janv  2026, 15_51_30" src="https://github.com/user-attachments/assets/84dc56d4-cd5d-4fb6-a5e9-343dab6a92e0" />
+
+
 ### Création du MCD / MLD
 
 ## Première version (avant obtention des données)
