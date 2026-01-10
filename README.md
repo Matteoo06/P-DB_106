@@ -22,7 +22,7 @@
 ### - Chargement des données
 ### - Sauvegardes & restauration
 ### - Requêtes SQL
-### - Index
+### - Indexe
 ### - Rôles & utilisateurs
 ### - Transactions
 ### - Conclusion
@@ -564,7 +564,7 @@ GROUP BY lvr.livreur_id, lvr.nom
 ORDER BY "Délai moyen (minutes)" ASC;
 ```
 ---
-## Index
+## Indexe
 
 Soit les 2 requêtes suivantes :
 
@@ -587,7 +587,7 @@ Indexe Créé:
 CREATE INDEX idx_commande_statut_date
 ON t_commande (statut, date_heure);
 ```
-Cet index permet d’accélérer la recherche des commandes selon leur statut et leur date, 
+Cet indexe permet d’accélérer la recherche des commandes selon leur statut et leur date, 
 tout en optimisant le tri par date de commande.
 
 
@@ -610,7 +610,7 @@ Indexe Créé:
 CREATE INDEX idx_commande_type_date_adresse
 ON t_commande (type_commande, date_heure, adresse_relier_fk);
 ```
-Cet index améliore les performances des requêtes filtrant les commandes par type, 
+Cet indexe améliore les performances des requêtes filtrant les commandes par type, 
 par tranche horaire et par adresse de livraison.
 ---
 ## Utilisateurs et rôles
