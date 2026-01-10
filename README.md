@@ -558,6 +558,77 @@ GROUP BY a.npa
 ORDER BY nb DESC;
 
 
+## Utilisateurs et rôles
+
+Creation des rôles 
+
+```sql
+CREATE ROLE 'Administrateur';
+CREATE ROLE 'Manager';
+CREATE ROLE 'Pizzaiolo';
+CREATE ROLE 'Livreur';
+CREATE ROLE 'Agent_de_caisse';
+CREATE ROLE 'Analyste';
+```
+
+Attribution des droits aux rôles
+
+Administrateur
+```sql
+GRANT ALL PRIVILEGES ON db_pizzeria.* TO 'Administrateur' WITH GRANT OPTION;
+
+Manager
+```sql
+GRANT SELECT, INSERT, UPDATE ON db_pizzeria.t_commande TO 'Manager';
+GRANT SELECT, INSERT, UPDATE ON db_pizzeria.t_ligne_commande TO 'Manager';
+GRANT SELECT, INSERT, UPDATE ON db_pizzeria.t_livraison TO 'Manager';
+GRANT SELECT, INSERT, UPDATE ON db_pizzeria.t_livreur TO 'Manager';
+GRANT SELECT ON db_pizzeria.t_paiement TO 'Manager';
+GRANT SELECT, INSERT, UPDATE ON db_pizzeria.t_produit TO 'Manager';
+```
+Pizzaiolo
+```sql
+GRANT SELECT ON db_pizzeria.t_commande TO 'Pizzaiolo';
+GRANT SELECT ON db_pizzeria.t_ligne_commande TO 'Pizzaiolo';
+GRANT UPDATE (status) ON db_pizzeria.t_commande TO 'Pizzaiolo';
+```
+Livreur
+```sql
+GRANT UPDATE (status) ON db_pizzeria.t_commande TO 'Livreur';
+GRANT UPDATE (date_depart, date_arrivee) ON db_pizzeria.t_livraison TO 'Livreur';
+GRANT SELECT ON db_pizzeria.t_commande TO 'Livreur';
+GRANT SELECT ON db_pizzeria.t_livraison TO 'Livreur';
+```
+Agents de caisse
+```sql
+GRANT SELECT ON db_pizzeria.t_commande TO 'Agent_de_caisse';
+GRANT SELECT, INSERT, UPDATE ON db_pizzeria.t_paiement TO 'Agent_de_caisse';
+```
+
+Analyste
+```sql
+GRANT SELECT ON db_pizzeria.* TO 'Analyste';
+```
+
+Création utilisateurs 
+
+```
+CREATE USER 'bob'@'localhost' IDENTIFIED BY 'bob2026';
+CREATE USER 'matteo'@'localhost' IDENTIFIED BY 'matteo2026';
+CREATE USER 'alice'@'localhost' IDENTIFIED BY 'alice2026';
+CREATE USER 'julien'@'localhost' IDENTIFIED BY 'julien2026';
+CREATE USER 'luis'@'localhost' IDENTIFIED BY 'luis2026';
+CREATE USER 'david'@'localhost' IDENTIFIED BY 'david2026';
+```
+
+Attribution des rôles
+
+
+
+
+
+
+
 
 
 
