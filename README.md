@@ -22,10 +22,10 @@
 ### - Chargement des données
 ### - Sauvegardes & restauration
 ### - Requêtes SQL
-- Index
-- Rôles & utilisateurs
-- Transactions
-- Conclusion
+### - Index
+### - Rôles & utilisateurs
+### - Transactions
+### - Conclusion
 
 ---
 
