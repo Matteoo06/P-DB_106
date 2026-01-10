@@ -541,21 +541,48 @@ Soit les 2 requêtes suivantes :
 
 Requête n°1:
 
-SELECT c.commande_id, c.date_heure, c.statut, cl.nom AS client
-FROM t_commande AS c
-JOIN t_client AS cl ON c.client_passer_fk = cl.client_id
-WHERE c.statut = 'livrée' AND c.date_heure > '2025-02-01'
+```
+SELECT 
+    c.commande_id AS "ID commande",
+    c.date_heure AS "Date",
+    c.statut AS "Statut",
+    cl.nom AS "Client"
+FROM t_commande c
+JOIN t_client cl ON c.client_passer_fk = cl.client_id
+WHERE c.statut LIKE 'livr%'
+  AND c.date_heure > '2025-02-01'
 ORDER BY c.date_heure DESC;
+```
+Indexe Créé:
+```
+CREATE INDEX idx_commande_statut_date
+ON t_commande (statut, date_heure);
+```
+Cet index permet d’accélérer la recherche des commandes selon leur statut et leur date, 
+tout en optimisant le tri par date de commande.
+
 
 Requête n°2 :
 
-SELECT a.npa AS zone_npa, COUNT(c.commande_id) AS nb
+```
+SELECT 
+    a.npa AS "Zone NPA",
+    COUNT(c.commande_id) AS "Nombre de commandes"
 FROM t_commande AS c
-JOIN t_adresse AS a ON c.adresse_livraison_fk = a.adresse_id
-WHERE c.type = 'livraison' AND HOUR(c.date_creation) BETWEEN 18 AND 21
+JOIN t_adresse AS a 
+    ON c.adresse_relier_fk = a.adresse_id
+WHERE c.type_commande = 'livraison'
+  AND HOUR(c.date_heure) BETWEEN 18 AND 21
 GROUP BY a.npa
-ORDER BY nb DESC;
-
+ORDER BY COUNT(c.commande_id) DESC;
+```
+Indexe Créé:
+```
+CREATE INDEX idx_commande_type_date_adresse
+ON t_commande (type_commande, date_heure, adresse_relier_fk);
+```
+Cet index améliore les performances des requêtes filtrant les commandes par type, 
+par tranche horaire et par adresse de livraison.
 ---
 ## Utilisateurs et rôles
 
@@ -632,13 +659,75 @@ GRANT 'Analyste' TO 'david'@'localhost';
 ```
 ---
 ## Transaction
+### Scénarios : Paiement d'une commande 
+
+- Un client paie sa commande.
+- Le système doit alors :
+- enregistrer le paiement,
+- mettre à jour le statut de la commande (ex : payee).
 
 
+Cas normal (transaction réussie)
+
+```
+START TRANSACTION;
+
+-- 1. Enregistrement du paiement
+INSERT INTO t_paiement (
+    mode_paiement,
+    date_paiement,
+    montant,
+    commande_associer_a_fk
+)
+VALUES (
+    'Carte bancaire',
+    NOW(),
+    '39.90',
+    1
+);
+
+UPDATE t_commande
+SET statut = 'payee'
+WHERE commande_id = 1;
+
+COMMIT;
+```
+
+Résultat :
+- paiement enregistré
+- commande marquée comme payée
+
+Cas d’erreur provoquée (ROLLBACK)
+```
+START TRANSACTION;
+
+INSERT INTO t_paiement (
+    mode_paiement,
+    date_paiement,
+    montant,
+    commande_associer_a_fk
+)
+VALUES (
+    'Carte bancaire',
+    NOW(),
+    '39.90',
+    999
+);
+
+UPDATE t_commande
+SET statut = 'payee'
+WHERE commande_id = 9999;
+
+ROLLBACK;
+```
+
+Résultat :
+- Le commande_id empêche l’insertion (existe pas)
+- La transaction est annulée
+- Aucun paiement n’est enregisté
 
 
-
-
-
+## Conclusion
 
 
 
