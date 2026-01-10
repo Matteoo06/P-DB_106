@@ -66,7 +66,7 @@
 - Faire docker-compose up -d
 - Sur un navigateur tapez "http://localhost:8081" puis connecter vous en root root
 - (Si il y a un probleme d'insertion apres cela, redemarrer docker)
-(MySQL 8.0.30 / PHP My Admin 5.2.0 / Docker desktop 4.55.0)
+- Version des logiciels: MySQL 8.0.30 / PHP My Admin 5.2.0 / Docker desktop 4.55.0
 
 ---
 
