@@ -572,11 +572,11 @@ CREATE ROLE 'Analyste';
 
 ### Attribution des droits aux rôles
 
-Administrateur
+- Administrateur
 ```sql
 GRANT ALL PRIVILEGES ON db_pizzeria.* TO 'Administrateur' WITH GRANT OPTION;
 
-Manager
+- Manager
 ```sql
 GRANT SELECT, INSERT, UPDATE ON db_pizzeria.t_commande TO 'Manager';
 GRANT SELECT, INSERT, UPDATE ON db_pizzeria.t_ligne_commande TO 'Manager';
@@ -585,26 +585,26 @@ GRANT SELECT, INSERT, UPDATE ON db_pizzeria.t_livreur TO 'Manager';
 GRANT SELECT ON db_pizzeria.t_paiement TO 'Manager';
 GRANT SELECT, INSERT, UPDATE ON db_pizzeria.t_produit TO 'Manager';
 ```
-Pizzaiolo
+- Pizzaiolo
 ```sql
 GRANT SELECT ON db_pizzeria.t_commande TO 'Pizzaiolo';
 GRANT SELECT ON db_pizzeria.t_ligne_commande TO 'Pizzaiolo';
 GRANT UPDATE (status) ON db_pizzeria.t_commande TO 'Pizzaiolo';
 ```
-Livreur
+- Livreur
 ```sql
 GRANT UPDATE (status) ON db_pizzeria.t_commande TO 'Livreur';
 GRANT UPDATE (date_depart, date_arrivee) ON db_pizzeria.t_livraison TO 'Livreur';
 GRANT SELECT ON db_pizzeria.t_commande TO 'Livreur';
 GRANT SELECT ON db_pizzeria.t_livraison TO 'Livreur';
 ```
-Agents de caisse
+- Agents de caisse
 ```sql
 GRANT SELECT ON db_pizzeria.t_commande TO 'Agent_de_caisse';
 GRANT SELECT, INSERT, UPDATE ON db_pizzeria.t_paiement TO 'Agent_de_caisse';
 ```
 
-Analyste
+- Analyste
 ```sql
 GRANT SELECT ON db_pizzeria.* TO 'Analyste';
 ```
