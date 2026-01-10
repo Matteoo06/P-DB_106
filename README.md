@@ -399,8 +399,19 @@ mysqldump -u root -p db_pizzeria > /scripts/backups/full/full_db_pizzeria_$(date
 ```
 mysqldump -u root -p db_pizzeria t_client --where="last_modified >= '2026-01-07 00:00:00'" > /scripts/backups/différentiel/diff_t_client_diff_$(date +%F).sql
 ```
-Scénarios
-restauration 
+### Restauration 
+
+Restauration depuis une sauvegarde complète (chnager la date par celle qu'on souhaite restaurer)
+```
+mysql -u root -p db_pizzeria < /scripts/backups/full/full_db_pizzeria_YYYY-MM-DD.sql
+```
+
+
+Restauration depuis une sauvegarde différentiel (chnager la date par celle qu'on souhaite restaurer)
+```
+mysql -u root -p db_pizzeria < /scripts/backups/différentiel/diff_t_client_diff_YYYY-MM-DD.sql
+restauration
+```
 
 ---
 ## Requêtes SQL
@@ -612,7 +623,9 @@ ON t_commande (type_commande, date_heure, adresse_relier_fk);
 ```
 Cet indexe améliore les performances des requêtes filtrant les commandes par type, 
 par tranche horaire et par adresse de livraison.
+
 ---
+
 ## Utilisateurs et rôles
 
 ### Creation des rôles 
