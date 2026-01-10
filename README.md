@@ -4,6 +4,13 @@
 <p align="center">
   <img src="https://github.com/user-attachments/assets/84dc56d4-cd5d-4fb6-a5e9-343dab6a92e0" width="400">
 </p>
+<p align="center">
+  Matteo Coiro - CIN2A<br>
+  Lausanne ETML<br>
+  32P<br>
+  Antoine Mveng Evina<br>
+  
+</p>
 
 
 
