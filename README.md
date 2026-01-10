@@ -378,8 +378,8 @@ restauration
 
 Requête n°1 : 
 
-Afficher les dix pizzas les plus vendues (sans les toppings), triés par quantités totales décroissantes. 
-Vous devez afficher le nom et les quantités.
+- Afficher les dix pizzas les plus vendues (sans les toppings), triés par quantités totales décroissantes. 
+- Vous devez afficher le nom et les quantités.
 ```sql
 SELECT 
     p.nom AS "Nom de la pizza",
@@ -395,8 +395,8 @@ LIMIT 10;
 
 Requête n°2 : 
 
-Afficher les toppings les plus ajoutés. Le résultat doit être ordonné par le nombre de toppings de manière décroissante.
-Vous devez afficher le nom et le nombre.
+- Afficher les toppings les plus ajoutés. Le résultat doit être ordonné par le nombre de toppings de manière décroissante.
+- Vous devez afficher le nom et le nombre.
 
 ```sql
 SELECT 
@@ -410,8 +410,8 @@ ORDER BY SUM(lc.quantite) DESC;
 ```
 Requête n°3 : 
 
-Afficher le chiffre d’affaires par jour (commandes livrées). 
-Vous ne devez afficher que la date et le chiffres d’affaires (arrondi à 2 chiffres après la virgule).
+- Afficher le chiffre d’affaires par jour (commandes livrées).
+- Vous ne devez afficher que la date et le chiffres d’affaires (arrondi à 2 chiffres après la virgule).
 ```sql
 SELECT 
     DATE(c.date_heure) AS "Date",
@@ -425,11 +425,11 @@ ORDER BY DATE(c.date_heure);
 
 Requête n°4 : 
 
-Afficher le chiffre d’affaires par NPA (adresse de livraison). 
+- Afficher le chiffre d’affaires par NPA (adresse de livraison). 
 
-1ère colonne : npa
-2ème colonne : localité
-3ème colonne : chiffre d’affaires (arrondi à 2 chiffres après la virgule)
+- 1ère colonne : npa
+- 2ème colonne : localité
+- 3ème colonne : chiffre d’affaires (arrondi à 2 chiffres après la virgule)
 
 ```sql
 SELECT 
@@ -446,8 +446,7 @@ ORDER BY "Chiffre d'affaires" DESC;
 
 Requête n°5 : 
 
-Affiche le nombre de commandes par heure. Il s’agit par cette requête de savoir quelles sont les heures « chaudes ».
-NB : les heures « chaudes » sont des heures pendant lesquelles le nombre de commandes sont les plus élevées.
+- Affiche le nombre de commandes par heure. Il s’agit par cette requête de savoir quelles sont les heures « chaudes ».
 
 ```sql
 SELECT 
@@ -460,7 +459,7 @@ ORDER BY COUNT(*) DESC;
 
 Requête n°6: 
 
-Afficher le nombre de commandes des clients les plus fidèles. Un client est fidèle si son nombre de commandes est ≥ 5 . Afficher le résultat par ordre décroissant du nombre de commandes, puis par ordre alphabétique du nom.
+- Afficher le nombre de commandes des clients les plus fidèles. Un client est fidèle si son nombre de commandes est ≥ 5 . Afficher le résultat par ordre décroissant du nombre de commandes, puis par ordre alphabétique du nom.
 
 ```sql
 SELECT 
@@ -476,7 +475,7 @@ ORDER BY COUNT(*) DESC, c.nom ASC;
 
 Requête n°7: 
 
-Afficher le total dû par commande. Afficher l’id de la commande et le montant dû (arrondi à 2 chiffres après la virgule). Ordonnez le résultat par ordre croissant des ids de commandes.
+- Afficher le total dû par commande. Afficher l’id de la commande et le montant dû (arrondi à 2 chiffres après la virgule). Ordonnez le résultat par ordre croissant des ids de commandes.
 
 ```sql
 SELECT 
@@ -490,7 +489,7 @@ ORDER BY cmd.commande_id ASC;
 
 Requête n°8:
 
-Afficher le total payé par commande (commande ayant au moins un paiement). Afficher l’id de la commande et le total payé (arrondi à 2 chiffres après la virgule). Ordonnez le résultat par ordre croissant des ids de commandes.
+- Afficher le total payé par commande (commande ayant au moins un paiement). Afficher l’id de la commande et le total payé (arrondi à 2 chiffres après la virgule). Ordonnez le résultat par ordre croissant des ids de commandes.
 
 ```sql
 SELECT 
@@ -504,8 +503,8 @@ ORDER BY cmd.commande_id ASC;
 
 Requête n°9: 
 
-Quelle est la répartition des types de commandes.
-Ordonner le résultat par le nombre de commande de chaque type, du plus grand au plus petit.
+- Quelle est la répartition des types de commandes.
+- Ordonner le résultat par le nombre de commande de chaque type, du plus grand au plus petit.
 
 1ère colonne : type
 2ème colonne : nombre de commandes de ce type
@@ -521,9 +520,8 @@ ORDER BY COUNT(*) DESC;
 
 Requête n°10:
 
-Quel est le délai moyen de livraison par livreur (en minutes).
-Ordonner le résultat par délai moyen en minutes du plus petit au plus grand.
-Aide : l’id du livreur, son nom et le délai dans le SELECT.
+- Quel est le délai moyen de livraison par livreur (en minutes).
+- Ordonner le résultat par délai moyen en minutes du plus petit au plus grand.
 
 ```sql
 SELECT 
