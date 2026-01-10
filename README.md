@@ -645,11 +645,11 @@ GRANT SELECT, INSERT, UPDATE ON db_pizzeria.t_produit TO 'Manager';
 ```sql
 GRANT SELECT ON db_pizzeria.t_commande TO 'Pizzaiolo';
 GRANT SELECT ON db_pizzeria.t_ligne_commande TO 'Pizzaiolo';
-GRANT UPDATE (status) ON db_pizzeria.t_commande TO 'Pizzaiolo';
+GRANT UPDATE (statut) ON db_pizzeria.t_commande TO 'Pizzaiolo';
 ```
 - Livreur
 ```sql
-GRANT UPDATE (status) ON db_pizzeria.t_commande TO 'Livreur';
+GRANT UPDATE (statut) ON db_pizzeria.t_commande TO 'Livreur';
 GRANT UPDATE (date_depart, date_arrivee) ON db_pizzeria.t_livraison TO 'Livreur';
 GRANT SELECT ON db_pizzeria.t_commande TO 'Livreur';
 GRANT SELECT ON db_pizzeria.t_livraison TO 'Livreur';
