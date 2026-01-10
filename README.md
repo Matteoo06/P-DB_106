@@ -302,7 +302,7 @@ SET
 
 ## Mettre en place une stratégie de sauvegardes et de restauration
 
-Ajout de du champs "last_modified" qui enregistrera la date et heure du dernier changement / ajout 
+Ajout du champs "last_modified" a toute les tables qui enregistrera la date et heure du dernier changement / ajout 
 
 
 ```sql
@@ -357,15 +357,15 @@ DEFAULT CURRENT_TIMESTAMP
 ON UPDATE CURRENT_TIMESTAMP;
 ```
 
-Savegarde complete (execution dans le cmd a ouvrir depuis docker)
+### Savegarde complete (execution dans le cmd a ouvrir depuis docker)
 ```
 mysqldump -u root -p db_pizzeria > /scripts/backups/full/full_db_pizzeria_$(date +%F).sql
 ```
 
-Savegarde différentiel (execution dans le cmd a ouvrir depuis docker)
+### Savegarde différentiel (execution dans le cmd a ouvrir depuis docker)
 
-La date dans la commande correspond a la date de la derniere backup effectué (elle est donc a changer chaque jour)
-commande a faire pour chaque table (modifier le nom de la table dans la commande pour chaque table)
+- La date dans la commande correspond a la date de la derniere backup effectué (elle est donc a changer chaque jour)
+- commande a faire pour chaque table (modifier le nom de la table dans la commande pour chaque table)
 
 ```
 mysqldump -u root -p db_pizzeria t_client --where="last_modified >= '2026-01-07 00:00:00'" > /scripts/backups/différentiel/diff_t_client_diff_$(date +%F).sql
