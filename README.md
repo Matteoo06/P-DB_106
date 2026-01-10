@@ -15,17 +15,20 @@
 ---
 
 ## Table des matières
-- Introduction
-- Environnement / outils
-- Modélisation (MCD / MLD)
-- Création des tables
-- Chargement des données
-- Sauvegardes & restauration
-- Requêtes SQL
+### - Introduction
+### - Environnement / outils
+### - Modélisation (MCD / MLD)
+### - Création des tables
+### - Chargement des données
+### - Sauvegardes & restauration
+### - Requêtes SQL
 - Index
 - Rôles & utilisateurs
 - Transactions
 - Conclusion
+
+---
+
 ## Création du MCD / MLD
 
 ### Première version (avant obtention des données)
